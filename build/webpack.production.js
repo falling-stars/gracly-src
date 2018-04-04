@@ -29,14 +29,8 @@ module.exports = {
         }]
       },
       {
-        test: /index-back\.jpg/,
-        use: [{
-          loader: 'url-loader'
-        }]
-      },
-      {
         test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
-        exclude: /favicon\.ico|index-back\.jpg$/,
+        exclude: /favicon\.ico$/,
         use: [{
           loader: 'url-loader',
           options: {

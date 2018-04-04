@@ -6,9 +6,11 @@
   "scripts": {
     "dev": "webpack-dev-server --config build/webpack.development.js --mode development --progress",
     "build": "webpack --config build/webpack.production.js --mode production --progress",
-    "start": "node server/index.js",
+    "start-dev": "npm run build&&set NODE_ENV=development&&node server/index.js",
+    "start-pro": "npm run build&&set NODE_ENV=production&&node server/index.js",
     "build-ssr": "webpack --config build/webpack.config.server.js  --mode production --progress&& webpack --config build/webpack.config.client.js --mode production --progress",
-    "ssr": "npm run build-ssr&&node ./ssr/server/index.js"
+    "ssr-dev": "npm run build-ssr&&set NODE_ENV=development&&node ./ssr/server/index.js",
+    "ssr-pro": "npm run build-ssr&&set NODE_ENV=production&&node ./ssr/server/index.js"
   },
   "author": "",
   "license": "ISC",
