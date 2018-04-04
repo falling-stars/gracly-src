@@ -37,6 +37,8 @@
 </template>
 
 <script>
+  import {mobileDevice} from '../assets/gracly/npm/base'
+
   export default {
     data: () => ({
       introduce: [
@@ -180,6 +182,7 @@
       button()
     },
     mounted() {
+      this.$store.commit('setMobile', mobileDevice())
       this.stage = document.getElementsByClassName('stage')[0]
       this.back = document.getElementsByClassName('back')[0]
       this.centerX = this.back.clientWidth / 2

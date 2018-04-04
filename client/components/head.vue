@@ -49,11 +49,9 @@
       out: function (e) {
         e.target.classList.remove('over')
         setTimeout(() => document.getElementsByClassName('over').length === 0 && (this.tagX = this.initialX), 400)
-      }
-    },
-    watch: {
-      $route(to) {
-        switch (to.path) {
+      },
+      routeActiv(path) {
+        switch (path) {
           case '/':
             this.initialX = 0
             this.tagX = 0
@@ -75,6 +73,14 @@
             this.tagX = 420
             break
         }
+      }
+    },
+    created() {
+      this.routeActiv(this.$route.path)
+    },
+    watch: {
+      $route(to) {
+        this.routeActiv(to.path)
       }
     }
   }

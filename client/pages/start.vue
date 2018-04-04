@@ -1,7 +1,7 @@
 <template>
   <div class="flex">
     <ul class="menu grey-f-bg flex-child-noshrink" :class="{fixed:isFixed,static:isStatic}">
-      <li v-for="i in list" class="pointer inline-block full-width border-box text-center black relative" :class="{select:i.select}">
+      <li v-for="(i, k) in list" class="pointer inline-block full-width border-box text-center black relative" :class="{select:i.select}" :key="k" @click="select(k)">
         <a :href="i.url" class="inline-block full-height full-width">{{i.text}}</a>
       </li>
     </ul>
@@ -200,7 +200,20 @@
         isStatic: true
       }
     },
-    created() {
+    methods: {
+      select(k) {
+        if (k === 0) {
+          this.list[0].select = true
+          this.list[1].select = false
+        }
+        if (k === 1) {
+          this.list[0].select = false
+          this.list[1].select = true
+        }
+      }
+    },
+    created() {},
+    mounted() {
       const self = this
       scrollEvent([
         {
@@ -238,8 +251,6 @@
           }
         }
       ])
-    },
-    mounted() {
       Array.prototype.map.call(document.getElementsByClassName('code'), i => {
         let html = i.innerHTML
         html = html.replace(/rel/g, '<span class="tip2">rel</span>')
