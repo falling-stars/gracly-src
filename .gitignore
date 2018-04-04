@@ -1,0 +1,4 @@
+.idea
+server/static
+ssr/dist
+node_modules
