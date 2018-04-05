@@ -12,7 +12,7 @@
 <template>
   <header class="cursor-default black-bg flex flex-justify-between">
     <div class="flex flex-center full-height">
-      <router-link to="/" class="inline-block margin-left white home">gracly</router-link>
+      <router-link to="/" class="inline-block margin-left white home normal">gracly</router-link>
       <i class="fa fa-search white event-none relative search "></i>
       <input readonly value="搜索组件和库" type="text" class="grey-6-bg font-10 grey-e pointer">
     </div>
