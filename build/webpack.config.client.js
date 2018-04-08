@@ -6,6 +6,9 @@ module.exports = merge(base, {
   entry: {
     app: resolve(__dirname, '../ssr/src/entry-client.js')
   },
+  output: {
+    filename: '[name].js?[chunkhash:8]'
+  },
   optimization: {
     splitChunks: {
       cacheGroups: {
