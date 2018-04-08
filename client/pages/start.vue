@@ -1,7 +1,7 @@
 <template>
   <div class="flex">
     <ul class="menu grey-f-bg flex-child-noshrink" :class="{fixed:isFixed,static:isStatic}">
-      <li v-for="(i, k) in list" class="pointer inline-block full-width border-box text-center black relative" :class="{select:i.select}" :key="k" @click="select(k)">
+      <li v-for="(i, k) in list" class="pointer inline-block full-width border-box text-center black relative" :class="{select:i.select}" @click="select(k)">
         <a :href="i.url" class="inline-block full-height full-width">{{i.text}}</a>
       </li>
     </ul>
@@ -182,14 +182,17 @@
       <h3 class="h3">组件效果：</h3>
       <div class="code" id="page"></div>
     </div>
+    <up></up>
   </div>
 </template>
 
 <script>
+  import up from '~/components/up'
   import {scrollEvent, query} from '~/assets/gracly/npm/base'
   import {GraPage} from '~/assets/gracly/npm/component'
   import '~/assets/gracly/css/gracly.css'
   export default {
+    components: {up},
     data: () => {
       return {
         list: [
@@ -213,7 +216,7 @@
       }
     },
     created() {},
-    mounted() {
+    activated() {
       const self = this
       scrollEvent([
         {
@@ -251,6 +254,8 @@
           }
         }
       ])
+    },
+    mounted() {
       Array.prototype.map.call(document.getElementsByClassName('code'), i => {
         let html = i.innerHTML
         html = html.replace(/rel/g, '<span class="tip2">rel</span>')
@@ -288,11 +293,11 @@
 </script>
 
 <style scoped>
-  .menu{flex-basis: 1.6rem;width:1.6rem;left: 0;top:0;padding-top:10px;z-index: 99}
+  .menu{flex-basis: 2rem;width:2rem;left: 0;top:0;padding-top:10px;z-index: 99}
   .menu li{height: 0.4rem;margin-bottom: 5px;line-height: 0.4rem;border-left: solid 4px #e2e2e2;text-indent: -3px;transition: all 0.5s}
   .menu li:hover{border-left: solid 10px #5FB878;text-indent: -6px}
   .menu .select{border-left: solid 10px #5FB878;text-indent: -6px}
-  .cover{flex-basis: 1.6rem;padding-top:10px}
+  .cover{flex-basis: 2rem;padding-top:10px}
   .static{position: static}
   .content{padding: 0.45rem 0.8rem;color: black}
 </style>
