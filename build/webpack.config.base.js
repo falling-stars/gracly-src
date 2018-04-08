@@ -1,5 +1,5 @@
 const {resolve} = require('path')
-
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 module.exports = {
   output: {
     path: resolve(__dirname, '../ssr/dist'),
@@ -7,11 +7,23 @@ module.exports = {
   },
   module: {
     rules: [
-      {test: /\.css$/, loader: ['vue-style-loader', 'css-loader']},
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'vue-style-loader',
+          use: 'css-loader'
+        })
+      },
       {test: /\.js$/, loader: ['babel-loader'], exclude: /node_modules/},
       {test: /\.scss$/, loader: ['vue-style-loader', 'css-loader', 'sass-loader']},
       {test: /\.less$/, loader: ['vue-style-loader', 'css-loader', 'less-loader']},
-      {test: /\.vue$/, loader: ['vue-loader']},
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: {
+          extractCSS: true
+        }
+      },
       {
         test: /favicon\.ico$/,
         use: [{
@@ -34,6 +46,12 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new ExtractTextPlugin({
+      filename: 'common.[chunkhash].css',
+      allChunks: true
+    })
+  ],
   resolve: {
     extensions: ['.js', '.json', '.css', '.vue'],
     alias: {

@@ -4,8 +4,6 @@ import {createRouter} from './router'
 import {createStore} from './store'
 import {sync} from 'vuex-router-sync'
 import '~/assets/images/favicon.ico'
-import '~/assets/style/common.css'
-import 'font-awesome/css/font-awesome.min.css'
 
 export function createApp() {
   const router = createRouter()
