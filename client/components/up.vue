@@ -6,8 +6,8 @@
     <div class="menu full-width pointer text-center white-bg relative" @click="spread" :style="{top:`${rotate === 0?0:0.7}rem`}">
       <i class="spread fa fa-life-ring font-30" aria-hidden="true" :style="{color:spreadColor,transform:`rotate(${rotate}deg)`}"></i>
       <ul v-show="ulShow">
-        <li v-for="i in menu" class="white-bg absolute" :style="{right:`${i.right}rem`,top:`${i.top}rem`}">
-          <router-link :to="i.url" class="font-12 full-height full-width inline-block">{{i.text}}</router-link>
+        <li v-for="i in menu" class="white-bg absolute overflow-hide" :style="{right:`${i.right}rem`,top:`${i.top}rem`}">
+          <router-link :to="i.url" class="font-12 full-height full-width inline-block relative">{{i.text}}</router-link>
         </li>
       </ul>
     </div>
@@ -53,10 +53,10 @@
           setTimeout(() => {
             self.ulShow = true
             self.menu[0].right = 0.1
-            self.menu[0].top = -0.74
-            self.menu[1].right = 0.77
+            self.menu[0].top = -0.7
+            self.menu[1].right = 0.7
             self.menu[1].top = -0.35
-            self.menu[2].right = 0.77
+            self.menu[2].right = 0.7
             self.menu[2].top = 0.35
             self.menu[3].right = 0.1
             self.menu[3].top = 0.74
@@ -81,5 +81,7 @@
   i{line-height:.65rem;font-size:.4rem;transform:rotate(-45deg)}
   .spread{line-height:.6rem;transition:all 0.5s}
   .menu{border-radius:50%;border:solid 1px #dfdfdf;height:0.6rem;transition:all 0.5s}
-  .menu li{line-height:0.47rem;border-radius:50%;border:solid 1px #dfdfdf;width:0.5rem;height:0.5rem;transition:all 0.5s;z-index:-1}
+  .menu li{line-height:0.49rem;border-radius:50%;border:solid 1px #dfdfdf;width:0.5rem;height:0.5rem;transition:all 0.5s;z-index:-1}
+  .menu li a{top: -2px}
+  .menu li a:hover{background-color: #5FB878;color: white}
 </style>
