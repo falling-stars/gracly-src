@@ -1,2 +1,2 @@
-client/dist/*.js
-client/assets/js/base.js
+dist
+src/assets

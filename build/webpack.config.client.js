@@ -4,10 +4,7 @@ const base = require('./webpack.config.base.js')
 const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
 module.exports = merge(base, {
   entry: {
-    app: resolve(__dirname, '../ssr/src/entry-client.js')
-  },
-  output: {
-    filename: '[name].js?[chunkhash:8]'
+    app: resolve(__dirname, '../src/entry-client.js')
   },
   optimization: {
     splitChunks: {

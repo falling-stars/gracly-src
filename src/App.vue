@@ -1,5 +1,5 @@
 <template>
-  <div id="ssr-app">
+  <div id="app">
     <headContent></headContent>
     <keep-alive>
       <router-view v-if="$route.meta.keepAlive">

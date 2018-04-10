@@ -2,8 +2,8 @@ const {resolve} = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 module.exports = {
   output: {
-    path: resolve(__dirname, '../ssr/dist'),
-    filename: '[name].js'
+    path: resolve(__dirname, '../dist'),
+    filename: '[name].[chunkhash].js'
   },
   module: {
     rules: [
@@ -55,7 +55,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.json', '.css', '.vue'],
     alias: {
-      '~': resolve(__dirname, '../client')
+      '~': resolve(__dirname, '../src')
     }
   }
 }

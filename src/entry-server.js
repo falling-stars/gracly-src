@@ -1,4 +1,4 @@
-import {createApp} from './main.js'
+import {createApp} from './main'
 
 export default context => {
   return new Promise((resolve, reject) => {
@@ -7,7 +7,7 @@ export default context => {
     router.onReady(() => {
       const matchedComponents = router.getMatchedComponents()
       if (!matchedComponents.length) {
-        return reject({code: 404})
+        reject(404)
       }
       Promise.all(matchedComponents.map(Component => {
         if (Component.asyncData) {

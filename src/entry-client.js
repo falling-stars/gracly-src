@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import progress from '~/components/progress'
+import progress from './components/progress'
 import {createApp} from './main'
 
 const processBar = Vue.prototype.$progress = new Vue(progress).$mount()
@@ -30,5 +30,5 @@ router.onReady(() => {
       next()
     }).catch(next)
   })
-  app.$mount('#ssr-app')
+  app.$mount('#app')
 })

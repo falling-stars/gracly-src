@@ -6,7 +6,7 @@ const VueSSRServerPlugin = require('vue-server-renderer/server-plugin')
 const webpackConfig = merge(base, {
   target: 'node',
   entry: {
-    ssr: resolve(__dirname, '../ssr/src/entry-server.js')
+    ssr: resolve(__dirname, '../src/entry-server.js')
   },
   output: {
     libraryTarget: 'commonjs2'
