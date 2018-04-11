@@ -4,9 +4,10 @@ const render = require('./render')
 const router = new Router()
 
 router.get('*', async (ctx, next) => {
-  if (/^(\/|\/start|\/document|\/hub|\/about)$/.test(ctx.url)) {
-    ctx.type = 'html'
-    ctx.body = await render(ctx)
+  ctx.type = 'html'
+  const html = await render(ctx).catch(error => !error === 404 && console.log(error))
+  if (html) {
+    ctx.body = html
   } else {
     await next()
   }
