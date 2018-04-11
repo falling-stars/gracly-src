@@ -6,20 +6,19 @@ export default context => {
     router.push(context.url)
     router.onReady(() => {
       const matchedComponents = router.getMatchedComponents()
-      if (!matchedComponents.length) {
-        reject(404)
+      if (matchedComponents.length) {
+        Promise.all(matchedComponents.map(Component => {
+          if (Component.asyncData) {
+            return Component.asyncData({
+              store,
+              route: router.currentRoute
+            })
+          }
+        })).then(() => {
+          context.state = store.state
+          resolve(app)
+        }).catch(reject)
       }
-      Promise.all(matchedComponents.map(Component => {
-        if (Component.asyncData) {
-          return Component.asyncData({
-            store,
-            route: router.currentRoute
-          })
-        }
-      })).then(() => {
-        context.state = store.state
-        resolve(app)
-      }).catch(reject)
     }, reject)
   })
 }
