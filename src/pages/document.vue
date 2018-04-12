@@ -219,10 +219,10 @@
     methods: {
       select(e) {
         const target = e.target
-        if (target.tagName === 'LI' && target.classList.contains('li-obj')) {
+        if (target.tagName === 'A' && target.parentNode.classList.contains('li-obj')) {
           const select = document.getElementsByClassName('liSelect')
           select.length > 0 && select[0].classList.remove('liSelect')
-          target.classList.add('liSelect')
+          target.parentNode.classList.add('liSelect')
         }
       }
     },

@@ -1,5 +1,5 @@
 <style scoped>
-  header{height:50px}
+  header{height:50px;margin-top: 0;transition: margin-top 1s}
   header input{width:130px;height:22px}
   .home{height:28px;width:70px;font-family:WaltDisneyScript,sans-serif;font-size:0.53rem;line-height:0.38;padding-left:10px}
   nav{height:50px}
@@ -8,9 +8,10 @@
   .search{left:22px;pointer-events:none}
   input{text-indent:30px;border-radius:40px;border:none;padding:2px}
   .tag{z-index:99;top:46px;width:80px;height:4px;transition:all .4s}
+  .extend{width: 0.5rem;height: 0.5rem;bottom: -0.25rem;left: calc(50% - 0.5rem);border-radius: 50%;border: solid 1px rgba(104, 104, 104, 0.5);line-height: 0.7rem}
 </style>
 <template>
-  <header class="cursor-default black-bg flex flex-justify-between">
+  <header class="relative cursor-default black-bg flex flex-justify-between" :style="{marginTop:`${fold?-50:0}px`}">
     <div class="flex flex-center full-height">
       <router-link to="/" class="inline-block margin-left white home normal">gracly</router-link>
       <i class="fa fa-search white event-none relative search "></i>
@@ -25,12 +26,15 @@
       </ul>
       <span class="inline-block absolute tag select-color" :style="{left:tagX+'px'}"></span>
     </nav>
+
+    <i v-if="fold" class="extend fa fa-angle-double-down inline-block absolute pointer text-center" aria-hidden="true" @click="extend"></i>
   </header>
 </template>
 
 <script>
   export default {
     data: () => ({
+      fold: false,
       link: [
         {url: '/', name: '首页'},
         {url: '/start', name: '快速入门'},
@@ -51,6 +55,7 @@
         setTimeout(() => document.getElementsByClassName('over').length === 0 && (this.tagX = this.initialX), 400)
       },
       routeActiv(path) {
+        this.fold = path === '/hub' ? 1 : 0
         switch (path) {
           case '/':
             this.initialX = 0
@@ -73,6 +78,9 @@
             this.tagX = 420
             break
         }
+      },
+      extend() {
+        this.fold = false
       }
     },
     created() {
