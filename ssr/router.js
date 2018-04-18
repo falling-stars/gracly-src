@@ -5,7 +5,7 @@ const router = new Router()
 
 router.get('*', async (ctx, next) => {
   ctx.type = 'html'
-  const html = await render(ctx).catch(error => !error === 404 && console.log(error))
+  const html = await render(ctx).catch(error => error !== 404 && console.log(error))
   if (html) {
     ctx.body = html
   } else {

@@ -1,44 +1,51 @@
 <style scoped>
-  .stage{height:560px;user-select:none;perspective:1000px}
-  .back{top:0;left:0;transform-style:preserve-3d;background:url(../assets/images/index-back.jpg) no-repeat center/1920px auto;z-index:2;transform: translateZ(1.2rem);transition: all 0.1s}
+  .stage{height:250px;user-select:none;margin-bottom: 30px}
+  .back{top:0;left:0;background:url(../assets/images/index-back.jpg) no-repeat center/auto 250px;z-index:2}
   .text{left:0;top:0;z-index:3}
-  h1{font-family:WaltDisneyScript,sans-serif;font-size:3.5rem;letter-spacing:2px;line-height:.7}
-  h2{font-size:.5rem;letter-spacing:2px;margin-top:80px}
-  #download{border-radius:50px;margin-top:30px;border:solid 2px #fff;width:200px;height:50px;background:transparent linear-gradient(60deg,transparent,rgba(255,255,255,.3),rgba(255,255,255,.8),rgba(255,255,255,.3),transparent) no-repeat -200px 0/auto auto}
+  h1{font-family:WaltDisneyScript,sans-serif;font-size:3.2rem;letter-spacing:2px;line-height:0.6}
+  h2{font-size:0.45rem;letter-spacing:2px;margin-top:1.5rem}
+  #download{border-radius:50px;margin-top:25px;border:solid 1px #fff;padding: 0.32rem 1.5rem;background:transparent linear-gradient(60deg,transparent,rgba(255,255,255,.3),rgba(255,255,255,.8),rgba(255,255,255,.3),transparent) no-repeat -200px 0/auto auto}
   canvas{left:0;top:0;z-index:2}
-  .introduce{padding:40px 0}
-  .introduce>div{width:120px;height:120px}
-  .circle{width:90px;height:90px;border-radius:50%;border:solid 1px #E6E6E6;margin:auto;transition:all .1s}
-  .circle i{font-size:.6rem;transition: all 1s}
+  .introduce{margin-bottom: 30px}
+  .introduce>div{width:3.5rem;height:3.5rem}
+  .circle{width:2.2rem;height:2.2rem;border-radius:50%;border:solid 1px #E6E6E6;margin:auto;transition:all .1s}
+  .circle i{font-size:0.9rem}
   .circle:hover{border:solid 1px #C8C8C8}
 </style>
 
 <template>
   <div>
-    <div class="stage full-width relative overflow-hide" @mousemove="move3d">
+    <div class="stage full-width relative overflow-hide">
       <div class="back full-height full-width absolute"></div>
       <div class="text absolute text-center full-width full-height">
         <h1 class="block white normal">gracly</h1>
         <h2 class="block white normal">PWA渐进式前端框架</h2>
-        <button id="download" class="pointer white font-18">立即下载</button>
+        <button id="download" class="pointer white font-16">立即下载</button>
       </div>
       <canvas class="absolute full-width full-height"></canvas>
     </div>
-    <div class="introduce white-bg text-center flex  flex-justify-around">
-      <div v-for="i in introduce" class="text-center flex-child-noshrink">
+    <div class="introduce white-bg text-center flex flex-justify-around">
+      <div v-for="(i, k) in introduce" v-if="k===0||k===1" class="text-center flex-child-noshrink">
         <div class="circle flex flex-center">
           <i :class=i.tag aria-hidden="true" class="grey-6"></i>
         </div>
-        <span class="black-3 block font-16 black margin-top normal line-height-1_5">{{i.text1}}</span>
-        <span class="grey-9 block font-14 line-height-1_5">{{i.text2}}</span>
+        <span class="black-3 block font-15 black margin-top normal line-height-1_5">{{i.text1}}</span>
+        <span class="grey-9 block font-13 line-height-1_5">{{i.text2}}</span>
+      </div>
+    </div>
+    <div class="introduce white-bg text-center flex flex-justify-around">
+      <div v-for="(i, k) in introduce" v-if="k===2||k===3" class="text-center flex-child-noshrink">
+        <div class="circle flex flex-center">
+          <i :class=i.tag aria-hidden="true" class="grey-6"></i>
+        </div>
+        <span class="black-3 block font-15 black margin-top normal line-height-1_5">{{i.text1}}</span>
+        <span class="grey-9 block font-13 line-height-1_5">{{i.text2}}</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import {mobileDevice} from '../assets/gracly/npm/base'
-
   export default {
     data: () => ({
       introduce: [
@@ -54,11 +61,6 @@
       rotateX: 0,
       rotateY: 0
     }),
-    methods: {
-      move3d(e) {
-        this.back.style.transform = `translateZ(1.2rem) rotateX(${-(e.pageY - this.centerY) * this.rotateY}deg) rotateY(${(e.pageX - this.centerX) * this.rotateX}deg)`
-      }
-    },
     activated() {
       const canvas = () => {
         const mobile = this.$store.state.mobile
@@ -109,46 +111,20 @@
           }
         }
 
-        if (mobile) {
-          const start1 = new Start(70, -15, 1.5, 0.5, 50)
-          start1.create()
-          const start2 = new Start(170, 0, 1.2, 1.1, 50)
-          start2.create()
-          const start3 = new Start(600, -43, 1.2, 1.5, 40)
-          start3.create()
-          const move = () => {
-            ctx.clearRect(0, 0, width, 560)
-            start1.move()
-            start2.move()
-            start3.move()
-            this.$route.path === '/' && setTimeout(move, 20)
-          }
-          move()
-        } else {
-          const start1 = new Start(70, -20, 1.5, 0.5, 50)
-          start1.create()
-          const start2 = new Start(170, -100, 1.2, 1.1, 50)
-          start2.create()
-          const start3 = new Start(600, -3, 1.2, 1.5, 40)
-          start3.create()
-          const start4 = new Start(870, -70, 1.2, 1, 50)
-          start4.create()
-          const start5 = new Start(1270, -55, 1.3, 1, 38)
-          start5.create()
-          const start6 = new Start(300, -10, 1.2, 1, 46)
-          start6.create()
-          const move = () => {
-            ctx.clearRect(0, 0, width, 560)
-            start1.move()
-            start2.move()
-            start3.move()
-            start4.move()
-            start5.move()
-            start6.move()
-            this.$route.path === '/' && setTimeout(move, 20)
-          }
-          move()
+        const start1 = new Start(70, -15, 1.5, 0.5, 50)
+        start1.create()
+        const start2 = new Start(170, 0, 1.2, 1.1, 50)
+        start2.create()
+        const start3 = new Start(600, -43, 1.2, 1.5, 40)
+        start3.create()
+        const move = () => {
+          ctx.clearRect(0, 0, width, 560)
+          start1.move()
+          start2.move()
+          start3.move()
+          this.$route.path === '/' && setTimeout(move, 20)
         }
+        move()
       }
       const button = () => {
         const obj = document.getElementById('download')
@@ -182,7 +158,6 @@
       button()
     },
     mounted() {
-      this.$store.commit('setMobile', mobileDevice())
       this.stage = document.getElementsByClassName('stage')[0]
       this.back = document.getElementsByClassName('back')[0]
       this.centerX = this.back.clientWidth / 2

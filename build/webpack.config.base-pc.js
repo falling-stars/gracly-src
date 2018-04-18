@@ -2,8 +2,8 @@ const {resolve} = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 module.exports = {
   output: {
-    path: resolve(__dirname, '../dist'),
-    filename: '[name].[chunkhash].js'
+    path: resolve(__dirname, '../dist-pc'),
+    filename: '[name].[chunkhash]-pc.js'
   },
   module: {
     rules: [
@@ -39,7 +39,7 @@ module.exports = {
         use: [{
           loader: 'url-loader',
           options: {
-            name: 'assets/images/[name].[hash].[ext]',
+            name: 'assets/images/[name].[hash]-pc.[ext]',
             limit: 5000
           }
         }]
@@ -55,7 +55,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.json', '.css', '.vue'],
     alias: {
-      '~': resolve(__dirname, '../src')
+      '~': resolve(__dirname, '../pc')
     }
   }
 }
