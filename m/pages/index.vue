@@ -8,9 +8,10 @@
   canvas{left:0;top:0;z-index:2}
   .introduce{margin-bottom: 30px}
   .introduce>div{width:3.5rem;height:3.5rem}
-  .circle{width:2.2rem;height:2.2rem;border-radius:50%;border:solid 1px #E6E6E6;margin:auto;transition:all .1s}
-  .circle i{font-size:0.9rem}
+  .circle{width:1.9rem;height:1.9rem;border-radius:50%;border:solid 1px #E6E6E6;margin:auto;transition:all .1s}
+  .circle i{font-size:1rem}
   .circle:hover{border:solid 1px #C8C8C8}
+  .sub-intro{margin-top: 3px}
 </style>
 
 <template>
@@ -27,19 +28,19 @@
     <div class="introduce white-bg text-center flex flex-justify-around">
       <div v-for="(i, k) in introduce" v-if="k===0||k===1" class="text-center flex-child-noshrink">
         <div class="circle flex flex-center">
-          <i :class=i.tag aria-hidden="true" class="grey-6"></i>
+          <i :class=i.tag aria-hidden="true" class="grey"></i>
         </div>
         <span class="black-3 block font-15 black margin-top normal line-height-1_5">{{i.text1}}</span>
-        <span class="grey-9 block font-13 line-height-1_5">{{i.text2}}</span>
+        <span class="sub-intro grey-9 block font-13 line-height-1_5">{{i.text2}}</span>
       </div>
     </div>
     <div class="introduce white-bg text-center flex flex-justify-around">
       <div v-for="(i, k) in introduce" v-if="k===2||k===3" class="text-center flex-child-noshrink">
         <div class="circle flex flex-center">
-          <i :class=i.tag aria-hidden="true" class="grey-6"></i>
+          <i :class=i.tag aria-hidden="true" class="grey"></i>
         </div>
         <span class="black-3 block font-15 black margin-top normal line-height-1_5">{{i.text1}}</span>
-        <span class="grey-9 block font-13 line-height-1_5">{{i.text2}}</span>
+        <span class="sub-intro grey-9 block font-13 line-height-1_5">{{i.text2}}</span>
       </div>
     </div>
   </div>
@@ -49,10 +50,10 @@
   export default {
     data: () => ({
       introduce: [
-        {text1: '低耦合组件库', text2: '功能轻松引入', tag: 'fa fa-codepen'},
-        {text1: '函数式基础库', text2: '灵活易于扩展', tag: 'fa fa-superscript'},
-        {text1: '专注性能优化', text2: '打破性能瓶颈', tag: 'fa fa-line-chart'},
-        {text1: '交互体验提升', text2: '极致的用户体验', tag: 'fa fa-refresh'}
+        {text1: '低耦合组件库', text2: '更优雅地引入', tag: 'fa fa-gears'},
+        {text1: '轻量核心驱动', text2: '很轻很强大', tag: 'fa fa-snowflake-o'},
+        {text1: '函数式基础库', text2: '并行提升性能', tag: 'fa fa-paper-plane-o'},
+        {text1: '交互体验提升', text2: '极致的体验', tag: 'fa fa-gg'}
       ],
       stage: null,
       back: null,

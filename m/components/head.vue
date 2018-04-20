@@ -1,10 +1,10 @@
 <style scoped>
-  header{bottom: 0;left: 0;z-index: 9999;height: 56px}
+  header{bottom: 0;left: 0;z-index: 999;height: 56px;background-color:#F9F9F9}
   li{width:56px}
   li i{margin-bottom: 2px}
 </style>
 <template>
-  <header class="fixed full-width white-bg">
+  <header class="fixed full-width">
     <nav class="border-top full-height">
       <ul class="full-height flex flex-justify-around">
         <li v-for="u in link" class="font-12 full-height border-box">
