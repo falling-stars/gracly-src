@@ -40,10 +40,10 @@
   export default {
     data: () => ({
       introduce: [
-        {text1: '低耦合组件库', text2: '功能轻松引入', tag: 'fa fa-codepen'},
-        {text1: '函数式基础库', text2: '灵活易于扩展', tag: 'fa fa-superscript'},
-        {text1: '专注性能优化', text2: '打破性能瓶颈', tag: 'fa fa-line-chart'},
-        {text1: '交互体验提升', text2: '极致的用户体验', tag: 'fa fa-refresh'}
+        {text1: '低耦合组件库', text2: '更优雅地引入', tag: 'fa fa-gears'},
+        {text1: '轻量核心驱动', text2: '很轻很强大', tag: 'fa fa-snowflake-o'},
+        {text1: '函数式基础库', text2: '并行提升性能', tag: 'fa fa-paper-plane-o'},
+        {text1: '交互体验提升', text2: '极致的体验', tag: 'fa fa-gg'}
       ],
       stage: null,
       back: null,
