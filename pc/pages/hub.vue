@@ -6,14 +6,11 @@
   .menu>div{margin-bottom: 0.2rem}
   .left{margin-left: 0.2rem}
   .user i{font-size: 30px}
-  .login{flex-basis: 3.8rem}
+  .login{flex-basis: 1rem}
   .login *{cursor: pointer}
-  .login i{font-size: 22px}
   .login button{border:none;padding: 7px 15px;border-radius: 15px;font-size: 14px;background-color:#9c9c9c;color:white}
   .li-obj{margin-right: 0.25rem}
   .li-obj a{line-height: 46px;padding: 0 20px}
-  .fa-weixin{color:#5FB878}
-  .fa-weibo{color:#c80f1e}
   .liSelect:after{content:'';position:absolute;width:100%;height:3px;bottom:0;left:0;display:inline-block;background-color:#00bc9b}
   .right{flex-basis:300px;margin-left: 0.2rem}
   .tagLink{padding: 5px  10px 6px 10px;border-radius: 30px}
@@ -47,19 +44,17 @@
   .JavaScript{background:url('../assets/images/js.png') center/25px auto no-repeat}
   .Node{background:url('../assets/images/node.png') center/25px auto no-repeat}
 </style>
+
 <template>
   <div>
+    <login :loginShow="loginShow" @loginClose="loginClose"></login>
     <div class="head flex flex-justify-between white-bg">
       <h1 class="logo flex-child-grow flex-child-noshrink inline-block padding-left margin-left font-30 black">gracly</h1>
       <div class="user flex-child-noshrink flex flex-align-center margin-right">
         <i class="fa fa-user-circle-o" aria-hidden="true"></i>
       </div>
       <div class="login full-height flex flex-align-center flex-justify-between flex-child-noshrink padding-right margin-left">
-        <button>登录</button>
-        <button>注册</button>
-        <i class="fa fa-weixin" aria-hidden="true"></i>
-        <i class="fa fa-weibo" aria-hidden="true"></i>
-        <i class="fa fa-github" aria-hidden="true"></i>
+        <button @click="loginShow = true">登录</button>
       </div>
     </div>
     <div class="hub flex flex-justify-between">
@@ -179,8 +174,11 @@
 </template>
 
 <script>
+  import login from '../components/login'
   export default {
+    components: {login},
     data: () => ({
+      loginShow: false,
       ulList: [
         {text: '首页', url: '#1', select: true},
         {text: '分享', url: '#2', select: false},
@@ -277,6 +275,20 @@
         {text: 'WebPack', url: '6'},
         {text: 'Node', url: '7'}
       ]
-    })
+    }),
+    methods: {
+      loginClose() {
+        this.loginShow = false
+      }
+    },
+    watch: {
+      loginShow(newValue) {
+        if (newValue) {
+          document.body.style.overflow = 'hidden'
+        } else {
+          document.body.style.overflow = 'visible'
+        }
+      }
+    }
   }
 </script>

@@ -339,6 +339,15 @@
         total: 100,
         show: 11
       }, value => console.log(value))
+    },
+    watch: {
+      menu(newValue) {
+        if (newValue) {
+          document.body.style.overflow = 'hidden'
+        } else {
+          document.body.style.overflow = 'visible'
+        }
+      }
     }
   }
 </script>
