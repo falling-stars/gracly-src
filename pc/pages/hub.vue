@@ -36,12 +36,11 @@
   .classifyLink span{padding-left: 4px;line-height: 25px}
   .classifyLink:hover span{color: #009a61}
   .WebPack{background:url('../assets/images/webpack.png') center/25px auto no-repeat}
-  .Vue{background:url('../assets/images/vue.png') center/23px auto no-repeat}
-  .React{background:url('../assets/images/react.png') center/24px auto no-repeat}
-  .Html5{background:url('../assets/images/h5.png') center/23px auto no-repeat}
-  .JavaScript{background:url('../assets/images/js.png') center/25px auto no-repeat}
-  .Angular{background:url('../assets/images/angular.png') center/23px auto no-repeat}
-  .JavaScript{background:url('../assets/images/js.png') center/25px auto no-repeat}
+  .Vue{background:url('../assets/images/vue.png') center/22px auto no-repeat}
+  .React{background:url('../assets/images/react.png') center/23px auto no-repeat}
+  .Html5{background:url('../assets/images/h5.png') center/22px auto no-repeat}
+  .JavaScript{background:url('../assets/images/js.png') center/24px auto no-repeat}
+  .Angular{background:url('../assets/images/angular.png') center/22px auto no-repeat}
   .Node{background:url('../assets/images/node.png') center/25px auto no-repeat}
 </style>
 
