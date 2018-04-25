@@ -26,15 +26,15 @@ app.use(async (ctx, next) => {
 })
 app.use(mount('/api', proxy('http://localhost:8888/', proxyConfig)))
 
-const httpsPort = process.env.NODE_ENV === 'production' ? 443 : 4433
-const httpPort = process.env.NODE_ENV === 'production' ? 80 : 8080
-
-https.createServer(ssh, app.callback()).listen(httpsPort, () => console.log(`Web Run In https://localhost:${httpsPort}`))
-
-const redirect = new Koa()
-const redirectURL = 'https://www.gracly.com'
-redirect.use(async ctx => {
-  ctx.status = 301
-  ctx.set({'Location': redirectURL})
-})
-redirect.listen(httpPort, () => console.log(`端口：${httpPort}已重定向到：${redirectURL}`))
+if (process.env.NODE_ENV === 'production') {
+  https.createServer(ssh, app.callback()).listen(443, () => console.log('Web Run In https://localhost:443'))
+  const redirect = new Koa()
+  const redirectURL = 'https://www.gracly.com'
+  redirect.use(async ctx => {
+    ctx.status = 301
+    ctx.set({'Location': redirectURL})
+  })
+  redirect.listen(80, () => console.log(`端口：80已重定向到：${redirectURL}`))
+} else {
+  app.listen(8080, () => console.log('Web Run In http://localhost:8080'))
+}

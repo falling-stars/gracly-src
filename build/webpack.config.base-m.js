@@ -3,7 +3,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 module.exports = {
   output: {
     path: resolve(__dirname, '../dist-m'),
-    filename: '[name].[chunkhash]-pc.js'
+    filename: '[name].[chunkhash]-m.js'
   },
   module: {
     rules: [
