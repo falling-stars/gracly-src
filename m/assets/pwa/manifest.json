@@ -1,13 +1,13 @@
 {
-  "name": "LAVAS",
-  "short_name": "LAVAS",
+  "name": "Gracly",
+  "short_name": "Gracly前端框架",
   "icons": [
     {
-      "src": "/android-chrome-192x192.png",
+      "src": "/logo-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     }, {
-      "src": "/android-chrome-512x512.png",
+      "src": "/logo-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
@@ -15,5 +15,5 @@
   "start_url": "/",
   "background_color": "#ffffff",
   "display": "standalone",
-  "theme_color": "#1976d2"
+  "theme_color": "#393D49"
 }
