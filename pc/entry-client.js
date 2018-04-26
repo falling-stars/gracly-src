@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import progress from './components/progress'
 import {createApp} from './main'
+import * as OfflinePluginRuntime from 'offline-plugin/runtime'
+OfflinePluginRuntime.install()
 
 const processBar = Vue.prototype.$progress = new Vue(progress).$mount()
 document.body.appendChild(processBar.$el)
