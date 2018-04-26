@@ -13,7 +13,6 @@ const ssh = {
   cert: fs.readFileSync(resolve(__dirname, '../ssh/ssh.pem'))
 }
 const proxyConfig = {preserveReqSession: true}
-
 app.use(server(resolve(__dirname, '../dist-pc'), {index: 'default', maxage: 1000 * 60 * 60 * 24 * 30, immutable: true}))
 app.use(server(resolve(__dirname, '../dist-m'), {index: 'default', maxage: 1000 * 60 * 60 * 24 * 30, immutable: true}))
 app.use(router.routes()).use(router.allowedMethods())

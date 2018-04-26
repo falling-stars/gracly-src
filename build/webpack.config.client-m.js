@@ -22,10 +22,12 @@ module.exports = merge(base, {
   },
   plugins: [
     new VueSSRClientPlugin(),
-    new CopyWebpackPlugin([{
-      from: resolve(__dirname, '../m/assets/pwa'),
-      to: resolve(__dirname, '../dist-m/')
-    }]),
+    new CopyWebpackPlugin([
+      {
+        from: resolve(__dirname, '../m/assets/pwa'),
+        to: resolve(__dirname, '../dist-m/')
+      }
+    ]),
     new OfflinePlugin({
       externals: ['/', '/start', '/document', '/hub', '/about']
     })
