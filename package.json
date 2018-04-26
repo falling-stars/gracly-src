@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "data": "node ./server/index.js",
     "build": "webpack --config build/webpack.config.server-pc.js  --mode production --progress&& webpack --config build/webpack.config.client-pc.js --mode production --progress&&webpack --config build/webpack.config.server-m.js  --mode production --progress&& webpack --config build/webpack.config.client-m.js --mode production --progress",
     "dev": "rimraf dist-pc&&rimraf dist-m&&npm run build&&set NODE_ENV=development&&node ./ssr",
     "start": "rimraf dist-pc&&rimraf dist-m&&npm run build&&set NODE_ENV=production&&node ./ssr"
