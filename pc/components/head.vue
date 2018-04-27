@@ -55,7 +55,8 @@
         setTimeout(() => document.getElementsByClassName('over').length === 0 && (this.tagX = this.initialX), 400)
       },
       routeActiv(path) {
-        this.fold = path === '/hub' ? 1 : 0
+        this.fold = /\/hub.*/.test(path) ? 1 : 0
+        this.fold && (path = '/hub')
         switch (path) {
           case '/':
             this.initialX = 0

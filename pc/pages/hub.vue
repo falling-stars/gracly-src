@@ -258,7 +258,7 @@
           text: '好书推荐-你不知道的JavaScript（下卷）',
           tag: ['好书推荐', 'JavaScript'],
           thumb: 43,
-          url: 'es65',
+          url: '/hub/es65',
           user: '刘建华',
           date: '2018-04-11',
           comment: 32,

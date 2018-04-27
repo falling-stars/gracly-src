@@ -20,6 +20,10 @@ export default [
     component: load('hub')
   },
   {
+    path: '/hub/:id',
+    component: load('content')
+  },
+  {
     path: '/about',
     component: load('about'),
     meta: {keepAlive: true}
