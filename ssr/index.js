@@ -7,13 +7,15 @@ const server = require('koa-static')
 const mount = require('koa-mount')
 const router = require('./router')
 const proxy = require('koa-better-http-proxy')
-const app = new Koa()
 const ssh = {
   key: fs.readFileSync(resolve(__dirname, '../ssh/ssh.key')),
   cert: fs.readFileSync(resolve(__dirname, '../ssh/ssh.pem'))
 }
+fs.rename(resolve(__dirname, '../dist-m/sw.js'), resolve(__dirname, '../dist-m/pwa/sw.js'), error => error && console.log(error))
+const app = new Koa()
 const proxyConfig = {preserveReqSession: true}
 app.use(server(resolve(__dirname, '../dist-pc'), {index: 'default', maxage: 1000 * 60 * 60 * 24 * 30, immutable: true}))
+app.use(server(resolve(__dirname, '../dist-m/pwa')))
 app.use(server(resolve(__dirname, '../dist-m'), {index: 'default', maxage: 1000 * 60 * 60 * 24 * 30, immutable: true}))
 app.use(router.routes()).use(router.allowedMethods())
 app.use(async (ctx, next) => {

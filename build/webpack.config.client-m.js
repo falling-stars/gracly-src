@@ -25,11 +25,12 @@ module.exports = merge(base, {
     new CopyWebpackPlugin([
       {
         from: resolve(__dirname, '../m/assets/pwa'),
-        to: resolve(__dirname, '../dist-m/')
+        to: resolve(__dirname, '../dist-m/pwa')
       }
     ]),
     new OfflinePlugin({
-      externals: ['/', '/start', '/document', '/hub', '/about']
+      externals: ['/', '/start', '/document', '/hub', '/about'],
+      excludes: ['manifest.json']
     })
   ]
 })
