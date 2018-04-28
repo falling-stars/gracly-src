@@ -1,14 +1,8 @@
 <style scoped>
-  .head{height: 46px;border-bottom: solid 1px #dfdfdf;user-select: none}
-  .logo{font-family:WaltDisneyScript,sans-serif;cursor: default}
   .hub{padding:0.2rem;background-color:#F5F5F5}
   .menu{flex-basis: 250px;background-color:#F5F5F5}
   .menu>div{margin-bottom: 0.2rem}
   .left{margin-left: 0.2rem}
-  .user i{font-size: 30px}
-  .login{flex-basis: 1rem}
-  .login *{cursor: pointer}
-  .login button{border:none;padding: 7px 15px;border-radius: 15px;font-size: 14px;background-color:#9c9c9c;color:white}
   .li-obj{margin-right: 0.25rem}
   .li-obj a{line-height: 46px;padding: 0 20px}
   .liSelect:after{content:'';position:absolute;width:100%;height:3px;bottom:0;left:0;display:inline-block;background-color:#00bc9b}
@@ -47,20 +41,12 @@
 <template>
   <div>
     <login :loginShow="loginShow" @loginClose="loginClose"></login>
-    <div class="head flex flex-justify-between white-bg">
-      <h1 class="logo flex-child-grow flex-child-noshrink inline-block padding-left margin-left font-30 black">gracly</h1>
-      <div class="user flex-child-noshrink flex flex-align-center margin-right">
-        <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-      </div>
-      <div class="login full-height flex flex-align-center flex-justify-between flex-child-noshrink padding-right margin-left">
-        <button @click="loginShow = true">登录</button>
-      </div>
-    </div>
+    <hubHead @loginShow="loginShow= true"></hubHead>
     <div class="hub flex flex-justify-between">
       <div class="menu flex-child-noshrink white-bg overflow-hide">
         <div class="announcement flex flex-col white-bg">
           <div class="full-width flex flex-justify-between border-bottom padding border-box">
-            <span>公告</span>
+            <h2>公告</h2>
             <router-link to="/" class="font-12 blue">查看更多</router-link>
           </div>
           <div>
@@ -76,7 +62,7 @@
         </div>
         <div class="classify flex flex-col white-bg">
           <div class="full-width flex flex-justify-between border-bottom padding border-box">
-            <span>分类板块</span>
+            <h2>分类板块</h2>
             <router-link to="/" class="font-12 blue">查看更多</router-link>
           </div>
           <div>
@@ -92,12 +78,40 @@
       <div class="left flex-child-grow white-bg flex-child-noshrink">
         <div class="white-bg padding full-width border-box">
           <div class="left-title flex flex-justify-between border-bottom">
-            <h2 class="normal">推荐</h2>
+            <h2>推荐</h2>
             <router-link to="/" class="font-12 blue">如何获得推荐？</router-link>
           </div>
-          <div class="top-container full-width padding-left">
+          <div class="top-container full-width border-box">
             <div class="obj flex border-bottom" v-for="i in top">
-              <div class="thumb flex flex-col flex-align-center pointer margin-right">
+              <div class="thumb flex flex-col flex-align-center pointer margin-right margin-left">
+                <i class="fa fa-caret-up grey-9" aria-hidden="true"></i>
+                <span class="font-14 grey line-height-1_5">{{i.thumb}}</span>
+              </div>
+              <div class="flex flex-col flex-justify-center flex-child-grow">
+                <div>
+                  <router-link class="link font-14 bold black" :to="i.url">{{i.text}}</router-link>
+                  <span class="tag margin-right font-10 normal border-box pointer grey-e-bg" v-for="t in i.tag">{{t}}</span>
+                  <i class="fa fa-star red" aria-hidden="true"></i><span class="start-num font-13">{{i.start}}</span>
+                </div>
+                <div class="user-container">
+                  <img class="user-head" src="../assets/demo.jpeg"/>
+                  <span class="user-name font-12 pointer">{{i.user}}</span>
+                  <span class="font-10 grey-6 margin-left">{{i.date}}</span>
+                  <i class="fa fa-comments grey-6 font-13 margin-left" aria-hidden="true"></i>
+                  <span class="font-10 grey-6">{{i.comment}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="white-bg padding full-width border-box">
+          <div class="left-title flex flex-justify-between border-bottom">
+            <h2>推荐</h2>
+            <router-link to="/" class="font-12 blue">如何获得推荐？</router-link>
+          </div>
+          <div class="top-container full-width border-box">
+            <div class="obj flex border-bottom" v-for="i in top">
+              <div class="thumb flex flex-col flex-align-center pointer margin-right margin-left">
                 <i class="fa fa-caret-up grey-9" aria-hidden="true"></i>
                 <span class="font-14 grey line-height-1_5">{{i.thumb}}</span>
               </div>
@@ -174,8 +188,9 @@
 
 <script>
   import login from '../components/login'
+  import hubHead from '../components/hubHead'
   export default {
-    components: {login},
+    components: {login, hubHead},
     data: () => ({
       loginShow: false,
       ulList: [

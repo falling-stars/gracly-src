@@ -27,7 +27,7 @@
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;果然一入前端深似海！在技术日新月异的今天，我们要随时保持学习才不至于被技术发展的列车甩下。但是能达到我上述标准的人并不占大多数（<span class="tip2" style="text-decoration: underline;">如果你达到了上述标准，请忽略这个框架的存在，因为这个框架的作用是帮助那些还没达到标准的开发者</span>），还有很多的二线，三线城市的前端工程师们可以因为公司技术更新速度慢或者学习成本的问题没有跟上，而gracly的初衷就在这里。想象一下我们实现一个单页面应用和模板渲染可以不用去学习React或者是Vue，而且我们所使用的东西可以很轻易地用原生JS来进行扩展或者实现，多么美好！
     </div>
     <div class="introduce font-15 line-height-1_5">
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gracly把常用的一些功能例如单页面，ajx，文件上传预览和进度显示，分页等等功能分离为单独的组件。用函数式编程的思想构建了基础库，在这个OOP横行的时代虽然有点不入大流，但我坚信在未来为了提高Web应用的性能有可能设计到多线程或者并行计算的时候，我们可以利用函数式编程编写出更简洁和更高性能的代码。
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gracly把常用的一些功能例如单页面，ajax，文件上传预览和进度显示，分页等等功能分离为单独的组件。用函数式编程的思想构建了基础库，在这个OOP横行的时代虽然有点不入大流，但我坚信在未来为了提高Web应用的性能有可能设计到多线程或者并行计算的时候，我们可以利用函数式编程编写出更简洁和更高性能的代码。
     </div>
     <div class="split"></div>
     <div id="author" class="user-div padding text-center relative" style="margin-top: -90px">
