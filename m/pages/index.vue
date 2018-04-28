@@ -123,7 +123,8 @@
           start1.move()
           start2.move()
           start3.move()
-          this.$route.path === '/' && setTimeout(move, 20)
+          const ID = requestAnimationFrame(move)
+          this.$route.path !== '/' && cancelAnimationFrame(ID)
         }
         move()
       }
@@ -140,14 +141,14 @@
                 if (x < 200) {
                   x += 10
                   obj.style.background = `linear-gradient(60deg, transparent, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3), transparent) no-repeat ${x}px 0/auto auto`
-                  setTimeout(move, 10)
+                  requestAnimationFrame(move)
                 } else {
                   obj.style.background = `linear-gradient(60deg, transparent, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3), transparent) no-repeat -200px 0/auto auto`
                   x = -200
                   lock = 0
                 }
               }
-              setTimeout(move, 0)
+              move()
             }
           }
         }
