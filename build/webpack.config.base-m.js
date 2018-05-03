@@ -35,8 +35,7 @@ module.exports = {
         }]
       },
       {
-        test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
-        exclude: /favicon\.ico$/,
+        test: /\.(png|jpe?g|gif|eot|ttf|woff2?|svgz?)$/i,
         use: [{
           loader: 'url-loader',
           options: {

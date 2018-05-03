@@ -26,22 +26,21 @@ module.exports = {
         }
       },
       {
+        test: /\.(png|jpe?g|gif|eot|ttf|woff2?|svgz?)$/i,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            name: 'assets/images/[name].[hash]-m.[ext]',
+            limit: 5000
+          }
+        }]
+      },
+      {
         test: /favicon\.ico$/,
         use: [{
           loader: 'file-loader',
           options: {
             name: '[name].[ext]?[hash]'
-          }
-        }]
-      },
-      {
-        test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
-        exclude: /favicon\.ico$/,
-        use: [{
-          loader: 'url-loader',
-          options: {
-            name: 'assets/images/[name].[hash]-pc.[ext]',
-            limit: 5000
           }
         }]
       }
