@@ -10,6 +10,7 @@
   .tag{z-index:99;top:46px;width:80px;height:4px;transition:all .4s}
   .extend{width: 0.5rem;height: 0.5rem;bottom: -0.25rem;left: calc(50% - 0.5rem);border-radius: 50%;border: solid 1px rgba(104, 104, 104, 0.5);line-height: 0.7rem}
 </style>
+
 <template>
   <header class="relative cursor-default black-bg flex flex-justify-between" :style="{marginTop:`${fold?-50:0}px`}">
     <div class="flex flex-center full-height">
