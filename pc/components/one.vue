@@ -20,6 +20,9 @@
       list() {
         return this.$store.state.userName
       }
+    },
+    mounted() {
+      this.$store.dispatch('getUserInfo')
     }
   }
 </script>
