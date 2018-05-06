@@ -33,16 +33,11 @@
         <span class="grey-9 block font-14 line-height-1_5">{{i.text2}}</span>
       </div>
     </div>
-    <!--<one></one>-->
-    <!--<two></two>-->
   </div>
 </template>
 
 <script>
-  // import one from '../components/one'
-  // import two from '../components/two'
   export default {
-    // components: {one, two},
     data: () => ({
       introduce: [
         {text1: '低耦合组件库', text2: '更优雅地引入', tag: 'fa fa-gears'},
