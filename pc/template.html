@@ -5,6 +5,16 @@
   <title>gracly-渐进式前端框架</title>
   <meta name="keywords" content="前端框架，PWA,pwa,高性能网站,高性能框架,开源框架">
   <meta name="description" content="PWA渐进式框架，构建高性能Web应用，致力于下一代Web技术">
+  <script>
+    const checkWebp = (callback) => {
+      const webp = new Image()
+      webp.src = 'data:image/webp;base64,UklGRiYAAABXRUJQVlA4IBoAAAAwAQCdASoBAAEAAIAMJaQAA3AA/v89WAAAAA=='
+      webp.onload = () => webp.width && callback()
+    }
+    let time = new Date()
+    time.setTime(time.getTime() + 1000 * 60 * 60 * 24 * 300)
+    checkWebp(() => document.cookie = `webp=1;expires=${time.toUTCString()}`)
+  </script>
 </head>
 <body>
 <!--vue-ssr-outlet-->

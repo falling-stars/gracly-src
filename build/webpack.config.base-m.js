@@ -53,9 +53,10 @@ module.exports = {
               outputPath: resolve(__dirname, '../dist-m'),
               name: 'assets/images/[name].[hash]-m.[ext]',
               subQuality: {
-                'user.jpeg': 90,
+                'user.jpeg': 85,
                 'index-back.jpg': 85
-              }
+              },
+              requestType: 'img'
             }
           }
         ]

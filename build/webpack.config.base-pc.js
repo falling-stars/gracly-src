@@ -44,9 +44,10 @@ module.exports = {
               outputPath: resolve(__dirname, '../dist-pc'),
               name: 'assets/images/[name].[hash]-pc.[ext]',
               subQuality: {
-                'user.jpeg': 90,
+                'user.jpeg': 85,
                 'index-back.jpg': 95
-              }
+              },
+              requestType: 'img'
             }
           }
         ]

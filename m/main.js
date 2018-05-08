@@ -1,11 +1,12 @@
 import Vue from 'vue'
-import App from '~/App'
+import App from './App'
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import {createRouter} from './router'
 import {createStore} from './store'
 import {sync} from 'vuex-router-sync'
-import '~/assets/images/favicon.ico'
+import './assets/images/favicon.ico'
+
 Vue.use(MintUI)
 
 export function createApp() {

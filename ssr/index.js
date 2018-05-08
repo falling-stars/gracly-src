@@ -7,12 +7,38 @@ const server = require('koa-static')
 const mount = require('koa-mount')
 const router = require('./router')
 const proxy = require('koa-better-http-proxy')
+const SWProcess = require('./sw-process')
+// SWProcess()
 const ssh = {
   key: fs.readFileSync(resolve(__dirname, '../ssh/ssh.key')),
   cert: fs.readFileSync(resolve(__dirname, '../ssh/ssh.pem'))
 }
-fs.rename(resolve(__dirname, '../dist-m/sw.js'), resolve(__dirname, '../dist-m/pwa/sw.js'), error => error && console.log(error))
 const app = new Koa()
+app.use(async (ctx, next) => {
+  if (/\.img$/.test(ctx.url)) {
+    if (/webp=1/.test(ctx.header.cookie)) {
+      ctx.url = ctx.url.replace(/\.img$/, '.webp')
+    } else {
+      console.log(ctx.url)
+      let url = ctx.url
+      if (/-m\./.test(url)) {
+        url = url.replace(ctx.host, '')
+        if (/^\//.test(url)) {
+          url = url.substr(1)
+        }
+        const targetUrl = resolve(__dirname, '../dist-m', url)
+        if (fs.existsSync(targetUrl.replace(/\.img$/, '.png'))) {
+          ctx.url = ctx.url.replace(/\.img$/, '.png')
+        } else if (fs.existsSync(targetUrl.replace(/\.img$/, '.jpg'))) {
+          ctx.url = ctx.url.replace(/\.img$/, '.jpg')
+        } else if (fs.existsSync(targetUrl.replace(/\.img$/, '.jpeg'))) {
+          ctx.url = ctx.url.replace(/\.img$/, '.jpeg')
+        }
+      }
+    }
+  }
+  await next()
+})
 const proxyConfig = {preserveReqSession: true}
 app.use(server(resolve(__dirname, '../dist-pc'), {index: 'default', maxage: 1000 * 60 * 60 * 24 * 30, immutable: true}))
 app.use(server(resolve(__dirname, '../dist-m/pwa'), {index: 'default', maxage: 1000 * 60 * 60 * 12, immutable: true}))
