@@ -35,7 +35,7 @@ module.exports = {
         }]
       },
       {
-        test: /\.(png|jpe?g|gif|eot|ttf|woff2?|svgz?)$/i,
+        test: /\.(gif|eot|ttf|woff2?|svgz?)$/i,
         use: [{
           loader: 'url-loader',
           options: {
@@ -43,6 +43,22 @@ module.exports = {
             limit: 5000
           }
         }]
+      },
+      {
+        test: /\.(png|jpe?g)$/i,
+        use: [
+          {
+            loader: 'image-webp-loader',
+            options: {
+              outputPath: resolve(__dirname, '../dist-m'),
+              name: 'assets/images/[name].[hash]-m.[ext]',
+              subQuality: {
+                'user.jpeg': 90,
+                'index-back.jpg': 85
+              }
+            }
+          }
+        ]
       }
     ]
   },

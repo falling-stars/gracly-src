@@ -26,14 +26,30 @@ module.exports = {
         }
       },
       {
-        test: /\.(png|jpe?g|gif|eot|ttf|woff2?|svgz?)$/i,
+        test: /\.(gif|eot|ttf|woff2?|svgz?)$/i,
         use: [{
           loader: 'url-loader',
           options: {
-            name: 'assets/images/[name].[hash]-m.[ext]',
+            name: 'assets/images/[name].[hash]-pc.[ext]',
             limit: 5000
           }
         }]
+      },
+      {
+        test: /\.(png|jpe?g)$/i,
+        use: [
+          {
+            loader: 'image-webp-loader',
+            options: {
+              outputPath: resolve(__dirname, '../dist-pc'),
+              name: 'assets/images/[name].[hash]-pc.[ext]',
+              subQuality: {
+                'user.jpeg': 90,
+                'index-back.jpg': 95
+              }
+            }
+          }
+        ]
       },
       {
         test: /favicon\.ico$/,
