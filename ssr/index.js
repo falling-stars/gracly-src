@@ -17,7 +17,7 @@ const ssh = {
 }
 const app = new Koa()
 if (process.env.NODE_ENV === 'production') {
-  app.use(async ctx => {
+  app.use(async (ctx, next) => {
     if (ctx.host !== 'www.gracly.com') {
       ctx.status = 404
     } else {
