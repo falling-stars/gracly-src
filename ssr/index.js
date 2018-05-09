@@ -7,34 +7,22 @@ const server = require('koa-static')
 const mount = require('koa-mount')
 const router = require('./router')
 const proxy = require('koa-better-http-proxy')
+const resolvePath = require('./resolve-path')
 const SWProcess = require('./sw-process')
-// SWProcess()
+const OS = process.platform
+SWProcess()
 const ssh = {
   key: fs.readFileSync(resolve(__dirname, '../ssh/ssh.key')),
   cert: fs.readFileSync(resolve(__dirname, '../ssh/ssh.pem'))
 }
 const app = new Koa()
 app.use(async (ctx, next) => {
-  if (/\.img$/.test(ctx.url)) {
+  if (/\.img$/.test(ctx.url) || /\.img\?/.test(ctx.url)) {
     if (/webp=1/.test(ctx.header.cookie)) {
       ctx.url = ctx.url.replace(/\.img$/, '.webp')
     } else {
-      console.log(ctx.url)
-      let url = ctx.url
-      if (/-m\./.test(url)) {
-        url = url.replace(ctx.host, '')
-        if (/^\//.test(url)) {
-          url = url.substr(1)
-        }
-        const targetUrl = resolve(__dirname, '../dist-m', url)
-        if (fs.existsSync(targetUrl.replace(/\.img$/, '.png'))) {
-          ctx.url = ctx.url.replace(/\.img$/, '.png')
-        } else if (fs.existsSync(targetUrl.replace(/\.img$/, '.jpg'))) {
-          ctx.url = ctx.url.replace(/\.img$/, '.jpg')
-        } else if (fs.existsSync(targetUrl.replace(/\.img$/, '.jpeg'))) {
-          ctx.url = ctx.url.replace(/\.img$/, '.jpeg')
-        }
-      }
+      const targetUrl = resolvePath(ctx.url, OS)
+      ctx.url = targetUrl ? targetUrl : ctx.url
     }
   }
   await next()
@@ -46,6 +34,7 @@ app.use(server(resolve(__dirname, '../dist-m'), {index: 'default', maxage: 1000 
 app.use(router.routes()).use(router.allowedMethods())
 app.use(async (ctx, next) => {
   if (!/^\/api.+/.test(ctx.url)) {
+    // console.log(ctx.url)
     ctx.body = 43
   } else {
     await next()
