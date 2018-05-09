@@ -41,7 +41,6 @@ app.use(server(resolve(__dirname, '../dist-m'), {index: 'default', maxage: 1000 
 app.use(router.routes()).use(router.allowedMethods())
 app.use(async (ctx, next) => {
   if (!/^\/api.+/.test(ctx.url)) {
-    // console.log(ctx.url)
     ctx.body = 43
   } else {
     await next()
