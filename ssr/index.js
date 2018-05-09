@@ -20,6 +20,8 @@ if (process.env.NODE_ENV === 'production') {
   app.use(async ctx => {
     if (ctx.host !== 'www.gracly.com') {
       ctx.status = 404
+    } else {
+      await next()
     }
   })
 }
