@@ -16,6 +16,13 @@ const ssh = {
   cert: fs.readFileSync(resolve(__dirname, '../ssh/ssh.pem'))
 }
 const app = new Koa()
+if (process.env.NODE_ENV === 'production') {
+  app.use(async ctx => {
+    if (ctx.host !== 'www.gracly.com') {
+      ctx.status = 404
+    }
+  })
+}
 app.use(async (ctx, next) => {
   if (/\.img$/.test(ctx.url) || /\.img\?/.test(ctx.url)) {
     if (/webp=1/.test(ctx.header.cookie)) {
@@ -47,8 +54,12 @@ if (process.env.NODE_ENV === 'production') {
   const redirect = new Koa()
   const redirectURL = 'https://www.gracly.com'
   redirect.use(async ctx => {
-    ctx.status = 301
-    ctx.set({'Location': redirectURL})
+    if (ctx.host !== 'www.gracly.com') {
+      ctx.status = 404
+    } else {
+      ctx.status = 301
+      ctx.set({'Location': redirectURL})
+    }
   })
   redirect.listen(80, () => console.log(`端口：80已重定向到：${redirectURL}`))
 } else {
