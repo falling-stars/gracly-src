@@ -10,7 +10,7 @@ const proxy = require('koa-better-http-proxy')
 const resolvePath = require('./resolve-path')
 const SWProcess = require('./sw-process')
 const OS = /:\\/.test(__dirname) ? 'win' : 'linux'
-// SWProcess()
+SWProcess()
 const ssh = {
   key: fs.readFileSync(resolve(__dirname, '../ssh/ssh.key')),
   cert: fs.readFileSync(resolve(__dirname, '../ssh/ssh.pem'))
@@ -28,7 +28,7 @@ if (process.env.NODE_ENV === 'production') {
 app.use(async (ctx, next) => {
   if (/\.img$/.test(ctx.url) || /\.img\?/.test(ctx.url)) {
     if (/webp=1/.test(ctx.header.cookie)) {
-      ctx.url = ctx.url.replace(/\.img$/, '.webp')
+      ctx.url = ctx.url.replace(/\.img/, '.webp')
     } else {
       const targetUrl = resolvePath(ctx.url, OS)
       ctx.url = targetUrl ? targetUrl : ctx.url
@@ -43,7 +43,6 @@ app.use(server(resolve(__dirname, '../dist-m'), {index: 'default', maxage: 1000 
 app.use(router.routes()).use(router.allowedMethods())
 app.use(async (ctx, next) => {
   if (!/^\/api.+/.test(ctx.url)) {
-    console.log(ctx.url)
     ctx.body = 43
   } else {
     await next()
