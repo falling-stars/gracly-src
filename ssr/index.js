@@ -38,7 +38,7 @@ app.use(async (ctx, next) => {
 })
 const proxyConfig = {preserveReqSession: true}
 app.use(server(resolve(__dirname, '../dist-pc'), {index: 'default', maxage: 1000 * 60 * 60 * 24 * 30, immutable: true}))
-app.use(server(resolve(__dirname, '../dist-m/pwa'), {index: 'default', maxage: 1000 * 60 * 60 * 12, immutable: true}))
+app.use(server(resolve(__dirname, '../dist-m/pwa'), {index: 'default'}))
 app.use(server(resolve(__dirname, '../dist-m'), {index: 'default', maxage: 1000 * 60 * 60 * 24 * 30, immutable: true}))
 app.use(router.routes()).use(router.allowedMethods())
 app.use(async (ctx, next) => {
