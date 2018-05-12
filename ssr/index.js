@@ -9,8 +9,8 @@ const router = require('./router')
 const proxy = require('koa-better-http-proxy')
 const resolvePath = require('./resolve-path')
 const SWProcess = require('./sw-process')
-const OS = process.platform
-SWProcess()
+const OS = /:\\/.test(__dirname) ? 'win' : 'linux'
+// SWProcess()
 const ssh = {
   key: fs.readFileSync(resolve(__dirname, '../ssh/ssh.key')),
   cert: fs.readFileSync(resolve(__dirname, '../ssh/ssh.pem'))
@@ -43,6 +43,7 @@ app.use(server(resolve(__dirname, '../dist-m'), {index: 'default', maxage: 1000 
 app.use(router.routes()).use(router.allowedMethods())
 app.use(async (ctx, next) => {
   if (!/^\/api.+/.test(ctx.url)) {
+    console.log(ctx.url)
     ctx.body = 43
   } else {
     await next()
