@@ -48,7 +48,9 @@ app.use(async (ctx, next) => {
     await next()
   }
 })
-app.use(mount('/api', proxy('http://localhost:8888/', proxyConfig)))
+let proxyURL = 'http://localhost:8888'
+process.env.NODE_ENV === 'production' && (proxyURL = 'https://localhost:8888')
+app.use(mount('/api', proxy(proxyURL, proxyConfig)))
 
 if (process.env.NODE_ENV === 'production') {
   https.createServer(ssh, app.callback()).listen(443, () => console.log('Web Run In https://localhost:443'))
