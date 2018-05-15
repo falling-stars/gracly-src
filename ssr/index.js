@@ -59,7 +59,7 @@ if (process.env.NODE_ENV === 'production') {
       ctx.status = 404
     } else {
       ctx.status = 301
-      ctx.set({'Location': redirectURL})
+      ctx.set({'Location': 'redirectURL' + ctx.url})
     }
   })
   redirect.listen(80, () => console.log(`端口：80已重定向到：${redirectURL}`))
