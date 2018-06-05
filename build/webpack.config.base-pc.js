@@ -1,5 +1,6 @@
 const {resolve} = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const {VueLoaderPlugin} = require('vue-loader')
 module.exports = {
   output: {
     path: resolve(__dirname, '../dist-pc'),
@@ -64,6 +65,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new VueLoaderPlugin(),
     new ExtractTextPlugin({
       filename: 'common.[chunkhash].css',
       allChunks: true
