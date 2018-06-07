@@ -5,7 +5,7 @@ const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
 
 module.exports = merge(base, {
   entry: {
-    app: resolve(__dirname, '../pc/entry-client.js')
+    app: ['babel-polyfill', resolve(__dirname, '../pc/entry-client.js')]
   },
   optimization: {
     splitChunks: {
