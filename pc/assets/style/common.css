@@ -1,6 +1,8 @@
 @font-face {
   font-family: 'WaltDisneyScript';
   src: url('WaltDisneyScript.ttf') format('truetype'),
+  url('WaltDisneyScript.eot?#iefix') format('embedded-opentype'),
+  url('WaltDisneyScript.eot'),
   url('WaltDisneyScript.svg#WaltDisneyScript') format('svg');
   font-weight: normal;
   font-style: normal;
