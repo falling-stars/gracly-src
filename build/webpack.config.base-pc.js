@@ -13,7 +13,7 @@ module.exports = {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: 'vue-style-loader',
-          use: 'css-loader'
+          use: ['css-loader', 'postcss-loader']
         })
       },
       {test: /\.js$/, loader: ['babel-loader'], exclude: /node_modules/},
