@@ -18,6 +18,7 @@ module.exports = {
       },
       {test: /\.js$/, loader: ['babel-loader'], exclude: /node_modules/},
       {test: /\.scss$/, loader: ['vue-style-loader', 'css-loader', 'sass-loader']},
+      {test: /\.less$/, loader: ['style-loader', 'css-loader', 'less-loader']},
       {
         test: /\.vue$/,
         loader: 'vue-loader',
