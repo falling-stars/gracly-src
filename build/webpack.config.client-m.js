@@ -7,7 +7,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = merge(base, {
   entry: {
-    app: resolve(__dirname, '../m/entry-client.js')
+    app: ['babel-polyfill', resolve(__dirname, '../m/entry-client.js')]
   },
   optimization: {
     splitChunks: {
