@@ -1,6 +1,6 @@
 const {resolve} = require('path')
 const merge = require('webpack-merge')
-const base = require('./webpack.config.base-pc.js')
+const base = require('./pc-base.js')
 const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
 
 module.exports = merge(base, {

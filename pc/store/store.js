@@ -1,10 +1,4 @@
-import Vuex from 'vuex'
-import Vue from 'vue'
-import fetch from '../api'
-
-Vue.use(Vuex)
-
-export default new Vuex.Store({
+export default {
   state: {
     userName: '',
     token: ''
@@ -21,4 +15,4 @@ export default new Vuex.Store({
       })
     }
   }
-})
+}

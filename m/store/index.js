@@ -1,5 +1,9 @@
-import Store from './store'
+import Vuex from 'vuex'
+import Vue from 'vue'
+import store from './store'
+
+Vue.use(Vuex)
 
 export function createStore() {
-  return Store
+  return new Vuex.Store(store)
 }

@@ -1,7 +1,7 @@
 const {resolve} = require('path')
 const nodeExternals = require('webpack-node-externals')
 const merge = require('webpack-merge')
-const base = require('./webpack.config.base-pc')
+const base = require('./pc-base')
 const VueSSRServerPlugin = require('vue-server-renderer/server-plugin')
 const webpackConfig = merge(base, {
   target: 'node',

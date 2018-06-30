@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config build/webpack.config.server-pc.js  --mode production --progress&& webpack --config build/webpack.config.client-pc.js --mode production --progress&&webpack --config build/webpack.config.server-m.js  --mode production --progress&& webpack --config build/webpack.config.client-m.js --mode production --progress",
-    "dev": "set NODE_ENV=development&&node ./dev-server",
-    "start": "rimraf dist-pc&&rimraf dist-m&&npm run build&&node ./ssr"
+    "build": "webpack --config build/pc-server.js  --mode production --progress&& webpack --config build/pc-client.js --mode production --progress&&webpack --config build/m-server.js  --mode production --progress&& webpack --config build/m-client.js --mode production --progress",
+    "start": "rimraf dist-pc&&rimraf dist-m&&set NODE_ENV=production&&npm run build&&node ./ssr",
+    "dev-pc": "webpack-dev-server --config dev-build/pc.js  --mode development",
+    "dev-m": "webpack-dev-server --config dev-build/m.js  --mode development"
   },
   "author": "",
   "license": "ISC",

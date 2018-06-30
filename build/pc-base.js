@@ -1,11 +1,10 @@
 const {resolve} = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const {VueLoaderPlugin} = require('vue-loader')
-const isDevelopment = process.env.NODE_ENV === 'development'
 module.exports = {
   output: {
     path: resolve(__dirname, '../dist-pc'),
-    filename: isDevelopment ? '[name].-pc.js' : '[name].[chunkhash]-pc.js',
+    filename: '[name].[chunkhash]-pc.js',
     publicPath: '/'
   },
   module: {

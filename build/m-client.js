@@ -1,6 +1,6 @@
 const {resolve} = require('path')
 const merge = require('webpack-merge')
-const base = require('./webpack.config.base-m.js')
+const base = require('./m-base')
 const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
 const OfflinePlugin = require('offline-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
