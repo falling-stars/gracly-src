@@ -16,15 +16,13 @@ const ssh = {
   cert: fs.readFileSync(resolve(__dirname, '../ssh/ssh.pem'))
 }
 const app = new Koa()
-if (process.env.NODE_ENV === 'production') {
-  app.use(async (ctx, next) => {
-    if (ctx.host !== 'www.gracly.com') {
-      ctx.status = 404
-    } else {
-      await next()
-    }
-  })
-}
+// app.use(async (ctx, next) => {
+//   if (ctx.host !== 'www.gracly.com') {
+//     ctx.status = 404
+//   } else {
+//     await next()
+//   }
+// })
 app.use(async (ctx, next) => {
   if (/\.img$/.test(ctx.url) || /\.img\?/.test(ctx.url)) {
     if (/webp=1/.test(ctx.header.cookie)) {
@@ -50,19 +48,15 @@ app.use(async (ctx, next) => {
 })
 app.use(mount('/api', proxy('http://localhost:8843', proxyConfig)))
 
-if (process.env.NODE_ENV === 'production') {
-  https.createServer(ssh, app.callback()).listen(443, () => console.log('Web Run In https://localhost:443'))
-  const redirect = new Koa()
-  const redirectURL = 'https://www.gracly.com'
-  redirect.use(async ctx => {
-    if (ctx.host !== 'www.gracly.com') {
-      ctx.status = 404
-    } else {
-      ctx.status = 301
-      ctx.set({'Location': redirectURL + ctx.url})
-    }
-  })
-  redirect.listen(80, () => console.log(`端口：80已重定向到：${redirectURL}`))
-} else {
-  app.listen(8080, () => console.log('Web Run In http://localhost:8080'))
-}
+https.createServer(ssh, app.callback()).listen(443, () => console.log('Web Run In https://localhost:443'))
+// const redirect = new Koa()
+// const redirectURL = 'https://www.gracly.com'
+// redirect.use(async ctx => {
+//   if (ctx.host !== 'www.gracly.com') {
+//     ctx.status = 404
+//   } else {
+//     ctx.status = 301
+//     ctx.set({'Location': redirectURL + ctx.url})
+//   }
+// })
+// redirect.listen(80, () => console.log(`端口：80已重定向到：${redirectURL}`))
