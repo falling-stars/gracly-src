@@ -5,10 +5,10 @@ const noCache = require('./no-cache')
 const {createBundleRenderer} = require('vue-server-renderer')
 const serverBundlePC = require('../dist-pc/vue-ssr-server-bundle')
 const clientManifestPC = require('../dist-pc/vue-ssr-client-manifest')
-const templatePC = fs.readFileSync(resolve(__dirname, '../pc/template.html'), 'utf-8')
+const templatePC = fs.readFileSync(resolve(__dirname, '../src/pc/template.html'), 'utf-8')
 const serverBundleM = require('../dist-m/vue-ssr-server-bundle')
 const clientManifestM = require('../dist-m/vue-ssr-client-manifest')
-const templateM = fs.readFileSync(resolve(__dirname, '../m/template.html'), 'utf-8')
+const templateM = fs.readFileSync(resolve(__dirname, '../src/m/template.html'), 'utf-8')
 const isMobile = (userAgent) => /Android|iPhone|Mobile/i.test(userAgent)
 const webCache = LRU({
   max: 200,

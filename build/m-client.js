@@ -7,7 +7,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = merge(base, {
   entry: {
-    app: ['babel-polyfill', resolve(__dirname, '../m/entry-client.js')]
+    app: ['babel-polyfill', resolve(__dirname, '../src/m/entry-client.js')]
   },
   optimization: {
     splitChunks: {
@@ -24,7 +24,7 @@ module.exports = merge(base, {
     new VueSSRClientPlugin(),
     new CopyWebpackPlugin([
       {
-        from: resolve(__dirname, '../m/assets/pwa'),
+        from: resolve(__dirname, '../src/m/assets/pwa'),
         to: resolve(__dirname, '../dist-m/pwa')
       }
     ]),

@@ -1,5 +1,4 @@
-const http = require('http')
-const https = require('https')
+// const https = require('https')
 const {resolve} = require('path')
 const fs = require('fs')
 const Koa = require('koa')
@@ -11,10 +10,10 @@ const resolvePath = require('./resolve-path')
 const SWProcess = require('./sw-process')
 const OS = /:\\/.test(__dirname) ? 'win' : 'linux'
 SWProcess()
-const ssh = {
-  key: fs.readFileSync(resolve(__dirname, '../ssh/ssh.key')),
-  cert: fs.readFileSync(resolve(__dirname, '../ssh/ssh.pem'))
-}
+// const ssh = {
+//   key: fs.readFileSync(resolve(__dirname, '../ssh/ssh.key')),
+//   cert: fs.readFileSync(resolve(__dirname, '../ssh/ssh.pem'))
+// }
 const app = new Koa()
 // app.use(async (ctx, next) => {
 //   if (ctx.host !== 'www.gracly.com') {
@@ -48,7 +47,8 @@ app.use(async (ctx, next) => {
 })
 app.use(mount('/api', proxy('http://localhost:8843', proxyConfig)))
 
-https.createServer(ssh, app.callback()).listen(443, () => console.log('Web Run In https://localhost:443'))
+// https.createServer(ssh, app.callback()).listen(443, () => console.log('Web Run In https://localhost:443'))
+app.listen(8080, () => console.log('Web Run In https://localhost:8080'))
 // const redirect = new Koa()
 // const redirectURL = 'https://www.gracly.com'
 // redirect.use(async ctx => {

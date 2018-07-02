@@ -1,10 +1,9 @@
 const resolve = path => require('path').resolve(__dirname, path)
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const {VueLoaderPlugin} = require('vue-loader')
-const env = process.env.NODE_ENV.split(':')
-const device = env[1]
+const device = process.env.NODE_ENV
 module.exports = {
-  mode: env[0],
+  mode: 'production',
   output: {
     path: resolve(`../dist-${device}`),
     filename: `[name].[chunkhash]-${device}.js`,
@@ -77,7 +76,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.json', '.css', '.vue'],
     alias: {
-      '~': resolve(`../${device}`)
+      '~': resolve(`../src/${device}`)
     }
   }
 }
