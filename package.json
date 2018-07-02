@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config build/pc-server.js  --mode production --progress&& webpack --config build/pc-client.js --mode production --progress&&webpack --config build/m-server.js  --mode production --progress&& webpack --config build/m-client.js --mode production --progress",
-    "start": "rimraf dist-pc&&rimraf dist-m&&set NODE_ENV=production&&npm run build&&node ./ssr",
+    "start": "rimraf dist-pc&&rimraf dist-m&&npm run build&&node ./ssr",
     "dev-pc": "webpack-dev-server --config dev-build/pc.js  --mode development",
     "dev-m": "webpack-dev-server --config dev-build/m.js  --mode development"
   },
@@ -22,6 +22,7 @@
     "babel-preset-env": "^1.7.0",
     "chokidar": "^2.0.4",
     "copy-webpack-plugin": "^4.5.1",
+    "cross-env": "^5.2.0",
     "css-loader": "^0.28.10",
     "eslint": "^4.19.1",
     "eslint-config-standard": "^11.0.0",
