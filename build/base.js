@@ -1,10 +1,13 @@
-const {resolve} = require('path')
+const resolve = path => require('path').resolve(__dirname, path)
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const {VueLoaderPlugin} = require('vue-loader')
+const env = process.env.NODE_ENV.split(':')
+const device = env[1]
 module.exports = {
+  mode: env[0],
   output: {
-    path: resolve(__dirname, '../dist-m'),
-    filename: '[name].[chunkhash]-m.js',
+    path: resolve(`../dist-${device}`),
+    filename: `[name].[chunkhash]-${device}.js`,
     publicPath: '/'
   },
   module: {
@@ -40,7 +43,7 @@ module.exports = {
         use: [{
           loader: 'url-loader',
           options: {
-            name: 'assets/images/[name].[hash]-m.[ext]',
+            name: `assets/images/[name].[hash]-${device}.[ext]`,
             limit: 5000
           }
         }]
@@ -51,8 +54,8 @@ module.exports = {
           {
             loader: 'image-webp-loader',
             options: {
-              outputPath: resolve(__dirname, '../dist-m'),
-              name: 'assets/images/[name].[hash]-m.[ext]',
+              outputPath: resolve(`../dist-${device}`),
+              name: `assets/images/[name].[hash]-${device}.[ext]`,
               subQuality: {
                 'user.jpeg': 85,
                 'index-back.jpg': 85
@@ -74,7 +77,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.json', '.css', '.vue'],
     alias: {
-      '~': resolve(__dirname, '../m')
+      '~': resolve(`../${device}`)
     }
   }
 }

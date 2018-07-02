@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config build/pc-server.js  --mode production --progress&& webpack --config build/pc-client.js --mode production --progress&&webpack --config build/m-server.js  --mode production --progress&& webpack --config build/m-client.js --mode production --progress",
-    "start": "rimraf dist-pc&&rimraf dist-m&&npm run build&&node ./ssr",
+    "build-pc": "cross-env NODE_ENV=production:pc webpack --config build/pc-server.js  --progress&&cross-env NODE_ENV=production:pc webpack --config build/pc-client.js  --progress",
+    "build-m": "cross-env NODE_ENV=production:m webpack --config build/m-server.js  --progress&&cross-env NODE_ENV=production:m webpack --config build/m-client.js  --progress",
+    "build": "rimraf dist-pc&&rimraf dist-m&&npm run build-pc&&npm run build-m",
+    "start": "npm run build&&node ./ssr",
     "dev-pc": "webpack-dev-server --config dev-build/pc.js  --mode development",
     "dev-m": "webpack-dev-server --config dev-build/m.js  --mode development"
   },
