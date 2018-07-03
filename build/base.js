@@ -38,7 +38,7 @@ module.exports = {
         }]
       },
       {
-        test: /\.(gif|eot|ttf|woff2?|svgz?)$/i,
+        test: /\.(png|jpe?g|gif|eot|ttf|woff2?|svgz?)$/i,
         use: [{
           loader: 'url-loader',
           options: {
@@ -46,24 +46,24 @@ module.exports = {
             limit: 5000
           }
         }]
-      },
-      {
-        test: /\.(png|jpe?g)$/i,
-        use: [
-          {
-            loader: 'image-webp-loader',
-            options: {
-              outputPath: resolve(`../dist-${device}`),
-              name: `assets/images/[name].[hash]-${device}.[ext]`,
-              subQuality: {
-                'user.jpeg': 85,
-                'index-back.jpg': 85
-              },
-              requestType: 'img'
-            }
-          }
-        ]
       }
+      // {
+      //   test: /\.(png|jpe?g)$/i,
+      //   use: [
+      //     {
+      //       loader: 'image-webp-loader',
+      //       options: {
+      //         outputPath: resolve(`../dist-${device}`),
+      //         name: `assets/images/[name].[hash]-${device}.[ext]`,
+      //         subQuality: {
+      //           'user.jpeg': 85,
+      //           'index-back.jpg': 85
+      //         },
+      //         requestType: 'img'
+      //       }
+      //     }
+      //   ]
+      // }
     ]
   },
   plugins: [

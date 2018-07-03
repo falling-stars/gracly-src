@@ -20,6 +20,7 @@ module.exports = {
     'no-unused-vars': 0,
     'no-undef': 0,
     'prefer-promise-reject-errors': 0,
-    'no-unneeded-ternary': 0
+    'no-unneeded-ternary': 0,
+    "no-trailing-spaces": 0
   }
 }
