@@ -7,7 +7,7 @@ const chokidar = require('chokidar')
 const {koaDevMiddleware, koaHotMiddleware} = require('koa-webpack-middleware-zm')
 const clientConfig = require(`../build/${device}-client`)
 const serverConfig = require(`../build/${device}-server`)
-const setConfig = require('./setConfig')
+const setConfig = require('./set-config')
 
 const readFile = (fs, file) => fs.readFileSync(join(clientConfig.output.path, file), 'utf-8')
 
