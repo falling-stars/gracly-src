@@ -9,7 +9,7 @@
     "build": "rimraf dist-pc&&rimraf dist-m&&npm run build-pc&&npm run build-m",
     "start": "npm run build&&node ./server",
     "dev-pc": "cross-env NODE_ENV=pc node ./server-dev",
-    "dev-m": "cross-env NODE_ENV=pc node ./server-dev"
+    "dev-m": "cross-env NODE_ENV=m node ./server-dev"
   },
   "author": "",
   "license": "ISC",

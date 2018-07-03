@@ -12,6 +12,40 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: {
+          extractCSS: true
+        }
+      },
+      {
+        test: /\.(gif|eot|ttf|woff2?|svgz?)$/i,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            name: `assets/images/[name].[hash]-${device}.[ext]`,
+            limit: 5000
+          }
+        }]
+      },
+      {
+        test: /\.(png|jpe?g)$/i,
+        use: [
+          {
+            loader: 'image-webp-loader',
+            options: {
+              outputPath: resolve(`../dist-${device}`),
+              name: `assets/images/[name].[hash]-${device}.[ext]`,
+              subQuality: {
+                'user.jpeg': 85,
+                'index-back.jpg': 85
+              },
+              requestType: 'img'
+            }
+          }
+        ]
+      },
+      {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: 'vue-style-loader',
@@ -22,13 +56,6 @@ module.exports = {
       {test: /\.scss$/, loader: ['vue-style-loader', 'css-loader', 'sass-loader']},
       {test: /\.less$/, loader: ['style-loader', 'css-loader', 'less-loader']},
       {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          extractCSS: true
-        }
-      },
-      {
         test: /favicon\.ico$/,
         use: [{
           loader: 'file-loader',
@@ -36,42 +63,15 @@ module.exports = {
             name: '[name].[ext]?[hash]'
           }
         }]
-      },
-      {
-        test: /\.(png|jpe?g|gif|eot|ttf|woff2?|svgz?)$/i,
-        use: [{
-          loader: 'url-loader',
-          options: {
-            name: `assets/images/[name].[hash]-${device}.[ext]`,
-            limit: 5000
-          }
-        }]
       }
-      // {
-      //   test: /\.(png|jpe?g)$/i,
-      //   use: [
-      //     {
-      //       loader: 'image-webp-loader',
-      //       options: {
-      //         outputPath: resolve(`../dist-${device}`),
-      //         name: `assets/images/[name].[hash]-${device}.[ext]`,
-      //         subQuality: {
-      //           'user.jpeg': 85,
-      //           'index-back.jpg': 85
-      //         },
-      //         requestType: 'img'
-      //       }
-      //     }
-      //   ]
-      // }
     ]
   },
   plugins: [
-    new VueLoaderPlugin(),
     new ExtractTextPlugin({
       filename: 'common.[chunkhash].css',
       allChunks: true
-    })
+    }),
+    new VueLoaderPlugin()
   ],
   resolve: {
     extensions: ['.js', '.json', '.css', '.vue'],

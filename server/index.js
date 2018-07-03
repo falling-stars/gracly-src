@@ -33,7 +33,6 @@ app.use(async (ctx, next) => {
   }
   await next()
 })
-const proxyConfig = {preserveReqSession: true}
 app.use(server(resolve(__dirname, '../dist-pc'), {index: 'default', maxage: 1000 * 60 * 60 * 24 * 30, immutable: true}))
 app.use(server(resolve(__dirname, '../dist-m/pwa'), {index: 'default'}))
 app.use(server(resolve(__dirname, '../dist-m'), {index: 'default', maxage: 1000 * 60 * 60 * 24 * 30, immutable: true}))
@@ -45,7 +44,9 @@ app.use(async (ctx, next) => {
     await next()
   }
 })
-app.use(mount('/api', proxy('http://localhost:8843', proxyConfig)))
+app.use(mount('/api', proxy('http://localhost:8843', {
+  preserveReqSession: true
+})))
 
 // https.createServer(ssh, app.callback()).listen(443, () => console.log('Web Run In https://localhost:443'))
 app.listen(8080, () => console.log('Web Run In https://localhost:8080'))

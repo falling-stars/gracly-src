@@ -1,11 +1,13 @@
+const device = process.env.NODE_ENV
 const {readFileSync} = require('fs')
 const {join} = require('path')
 const MFS = require('memory-fs')
 const webpack = require('webpack')
 const chokidar = require('chokidar')
 const {koaDevMiddleware, koaHotMiddleware} = require('koa-webpack-middleware-zm')
-const clientConfig = require('../build/pc-client')
-const serverConfig = require('../build/pc-server')
+const clientConfig = require(`../build/${device}-client`)
+const serverConfig = require(`../build/${device}-server`)
+const setConfig = require('./setConfig')
 
 const readFile = (fs, file) => fs.readFileSync(join(clientConfig.output.path, file), 'utf-8')
 
@@ -28,12 +30,7 @@ module.exports = function setupDevServer(app, templatePath, createRender) {
     update()
   })
 
-  clientConfig.entry.app = ['webpack-hot-middleware/client'].concat(clientConfig.entry.app)
-  clientConfig.output.filename = '[name].js'
-  clientConfig.plugins.push(
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
-  )
+  setConfig(clientConfig, serverConfig)
 
   const clientCompiler = webpack(clientConfig)
   const devMiddleware = require('webpack-dev-middleware')(clientCompiler, {
