@@ -9,7 +9,7 @@ const imageRule = {
   use: [{
     loader: 'url-loader',
     options: {
-      name: `assets/images/[name].-${device}.[ext]`,
+      name: `assets/images/[name]-${device}.[ext]`,
       limit: 5000
     }
   }]
