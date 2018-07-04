@@ -54,7 +54,7 @@ router.get('*', async (ctx, next) => {
   if (html !== 404) {
     ctx.body = html
   } else {
-    next()
+    await next()
   }
 })
 app.use(router.routes()).use(router.allowedMethods())
