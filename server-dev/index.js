@@ -68,12 +68,5 @@ app.use(async (ctx, next) => {
 app.use(mount('/api', proxy('http://localhost:8843', {
   preserveReqSession: true
 })))
-app.use(async (ctx, next) => {
-  if (!/^\/api.+/.test(ctx.url)) {
-    ctx.body = 43
-  } else {
-    await next()
-  }
-})
 
 app.listen(8080, () => console.log('Web Run In https://localhost:8080'))
